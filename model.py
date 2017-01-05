@@ -11,12 +11,12 @@ class TechAdopt(Model):
   beta = 0.1
   proportion_type = (alpha, 1-alpha-beta, beta)
   size_intervention = 0.5
-  size_target = 0.55 # Targeted proportion of Goods
+  size_target = 1 # Targeted proportion of Goods
   treated = list() # Agents treated
   controlled = list() # Agents controlled
 
   def __init__(self, width, height):
-    np.random.seed(51) # Fix the seed
+    # np.random.seed(51) # Fix the seed
     self.running = True
     self.width = width
     self.height = height
