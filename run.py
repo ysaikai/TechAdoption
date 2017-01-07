@@ -44,6 +44,7 @@ elif mode == 2:
 
   '''Model data'''
   print( 'ATT =', round(compute_ATT(m), 2) )
+  print( 'seed =', m.seed)
   # df_m.to_csv('../output/' + '{:%Y%m%d%H%M%S.csv}'.format(datetime.datetime.now()))
 
   '''Agent data'''

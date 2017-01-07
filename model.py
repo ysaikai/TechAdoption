@@ -1,3 +1,4 @@
+import datetime
 import numpy as np
 from mesa import Model
 from schedule import RandomSingleActivation
@@ -9,23 +10,30 @@ class TechAdopt(Model):
   types = (-1, 0, 1)
   alpha = 0.1
   beta = 0.1
-  proportion_type = (alpha, 1-alpha-beta, beta)
+  proportion_type = (beta, 1-alpha-beta, alpha)
   size_intervention = 0.5
   size_target = 1 # Targeted proportion of Goods
   treated = list() # Agents treated
   controlled = list() # Agents controlled
 
-  def __init__(self, width, height):
-    # np.random.seed(51) # Fix the seed
-    self.running = True
+  def __init__(self, width, height, seed=None, mode=0):
+    '''Truncate down to 9 digits as a seed must be between 0 and 4294967295'''
+    if seed is None:
+      seed = '{:%H%M%S%f}'.format(datetime.datetime.now())
+      seed = int(seed[:9])
+    np.random.seed(seed)
+    self.seed = seed
+
+    self.mode = mode # 0: random, 1: targeted
     self.width = width
     self.height = height
     self.N = width*height
+    self.schedule = RandomSingleActivation(self)
+    self.grid = MultiGrid(width, height, torus=True)
+
     '''The exact numbers of each agent'''
     self.size = [int(self.N*p) for p in self.proportion_type]
     self.size[1] = self.N - self.size[0] - self.size[2]
-    self.schedule = RandomSingleActivation(self)
-    self.grid = MultiGrid(width, height, torus=True)
 
     '''Create agents'''
     aid = -1
@@ -50,15 +58,20 @@ class TechAdopt(Model):
       agent_reporters = {
         "Radius": lambda a: a.radius} )
 
+    self.running = True
+
 
   def step(self):
     self.schedule.step()
     '''Intervention'''
     if self.schedule.steps == 1:
       num = int( self.size_intervention*self.N )
-      # self.treated = self.intervene_random(num)
-      self.treated = self.intervene_target(num)
-      # self.treated = self.intervene_block(num)
+      if self.mode == 0:
+        self.treated = self.intervene_random(num)
+      elif self.mode == 1:
+        self.treated = self.intervene_target(num)
+      elif self.mode == 2:
+        self.treated = self.intervene_block(num)
       for a in self.treated:
         a.adoption = True
         a.experience = True
@@ -81,10 +94,11 @@ class TechAdopt(Model):
       treated = np.random.choice(treated, num, replace=False)
     else:
       pool = list(set(self.schedule.agents) - set(treated))
+      # pool = self.type0
       treated.extend( np.random.choice(pool, diff, replace=False) )
     return treated
 
-
+  '''Target those in a block at the left-bottom corners'''
   def intervene_block(self, num):
     tmp = int( np.sqrt(num) )
     l = list()
