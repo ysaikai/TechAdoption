@@ -6,8 +6,8 @@ Promotion of a technology often encounters a gap between private and public bene
 
 The model is built on [Mesa](https://github.com/projectmesa/mesa). The model class (TechAdopt in model.py) accepts a grid size, a random seed, and a list of intervention modes. You may spefify them as well as the number of steps in run.py. For a single run, _run.py 2_ or _run.py 1_ and go to <http://localhost:8889> for visualization. For a batch run, in addition, set the number of iterations in batch.py. You should have a directory for an output file at the parent level.
 
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/https://youtu.be/pD7sCw36_fc/0.jpg)](http://www.youtube.com/watch?v=https://youtu.be/pD7sCw36_fc)
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/pD7sCw36_fc/0.jpg)](http://www.youtube.com/watch?v=pD7sCw36_fc)
 
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/https://youtu.be/5Ihb4MFc3NQ/0.jpg)](http://www.youtube.com/watch?v=https://youtu.be/5Ihb4MFc3NQ)
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/5Ihb4MFc3NQ/0.jpg)](http://www.youtube.com/watch?v=5Ihb4MFc3NQ)
 
 [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/N-mOrue5NQE/0.jpg)](http://www.youtube.com/watch?v=N-mOrue5NQE)
