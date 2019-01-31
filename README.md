@@ -17,4 +17,4 @@ Medium adoption rate<br>
 High adoption rate<br>
 [![High adoption rate](http://img.youtube.com/vi/N-mOrue5NQE/0.jpg)](http://www.youtube.com/watch?v=N-mOrue5NQE)
 
-[pdf](draft.pdf)
+[[pdf](draft.pdf)]
