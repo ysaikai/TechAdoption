@@ -1,4 +1,4 @@
-# An agent model for promoting modest technologies
+# An agent-based model for promoting modest technologies
 by Yuji Saikai, a PhD candidate at University of Wisconsin-Madison
 
 **Abstract**<br>
